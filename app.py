@@ -29,13 +29,17 @@ def chamar_ia_auditora(tipo, contexto):
         "Checklist": "Extraia lista de documentos de habilitação (Certidões, Balanço, CAT)."
     }
     try:
-        res = client.chat.completions.create(
-            model="llama3-8b-8192",
-            messages=[{"role": "system", "content": "Diretor Técnico SSI Engenharia. Foco em SEINFRA-CE/SINAPI."},
-                      {"role": "user", "content": f"{prompts[tipo]}\n\nBASE:\n{contexto[:10000]}"}],
-            temperature=0.1)
-        return str(res.choices[0].message.content)
-    except Exception as e: return f"Erro: {str(e)}"
+    res = client.chat.completions.create(
+        model="llama3-8b-8192",
+        messages=[
+            {"role": "system", "content": "Diretor Técnico SSI Engenharia. Foco em SEINFRA-CE/SINAPI."},
+            {"role": "user", "content": f"{prompts[tipo]}\n\nBASE:\n{contexto[:10000]}"},
+        ],
+        temperature=0.1
+    )
+    return str(res.choices[0].message["content"])
+except Exception as e:
+    return f"Erro: {str(e)}"
 
 def gerar_excel_cronograma(meses):
     output = io.BytesIO()
@@ -771,3 +775,4 @@ elif "6." in menu:
     st.subheader("📝 Observações de Encerramento")
 
     st.text_area("Notas técnicas:", key="contas_notas")
+
