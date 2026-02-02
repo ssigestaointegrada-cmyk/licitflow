@@ -30,7 +30,7 @@ def chamar_ia_auditora(tipo, contexto):
     }
     try:
         res = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="llama3-8b-8192",
             messages=[{"role": "system", "content": "Diretor Técnico SSI Engenharia. Foco em SEINFRA-CE/SINAPI."},
                       {"role": "user", "content": f"{prompts[tipo]}\n\nBASE:\n{contexto[:10000]}"}],
             temperature=0.1)
@@ -769,4 +769,5 @@ elif "6." in menu:
 
     # 3. PARECER FINAL
     st.subheader("📝 Observações de Encerramento")
+
     st.text_area("Notas técnicas:", key="contas_notas")
