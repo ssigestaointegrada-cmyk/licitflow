@@ -1,6 +1,6 @@
 streamlit
 pandas
-groq
+groq==0.5.0
 python-docx
 PyPDF2
 xlsxwriter
