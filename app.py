@@ -6,8 +6,13 @@ from docx import Document
 import PyPDF2
 
 # --- CONFIGURAÇÃO ---
-GROQ_API_KEY = "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"
-client = Groq(api_key=GROQ_API_KEY)
+from openai import OpenAI
+
+DEEPSEEK_API_KEY = "sua_chave"
+client = OpenAI(
+    api_key=DEEPSEEK_API_KEY,
+    base_url="https://api.deepseek.com"
+)
 
 # --- FUNÇÕES TÉCNICAS ---
 def extrair_texto_pdf(arquivo):
@@ -775,4 +780,5 @@ elif "6." in menu:
     st.subheader("📝 Observações de Encerramento")
 
     st.text_area("Notas técnicas:", key="contas_notas")
+
 
