@@ -35,7 +35,7 @@ def chamar_ia_auditora(tipo, contexto):
     }
     try:
     res = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="deepseek-chat",
         messages=[
             {"role": "system", "content": "Diretor Técnico SSI Engenharia. Foco em SEINFRA-CE/SINAPI."},
             {"role": "user", "content": f"{prompts[tipo]}\n\nBASE:\n{contexto[:10000]}"},
@@ -780,5 +780,6 @@ elif "6." in menu:
     st.subheader("📝 Observações de Encerramento")
 
     st.text_area("Notas técnicas:", key="contas_notas")
+
 
 
